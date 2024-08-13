@@ -17,6 +17,20 @@ class Login {
     this.user = null;
   }
 
+  async login(){
+    this.valida();
+    if(this.errors.length > 0) return;
+    this.user = await LoginModel.findOne({email: this.body.email}); // se o usuario existir ele vai para o user em this.user
+
+    if(!this.user){ this.errors.push('Usuário não existe. Crie uma conta'); return }
+
+    if(!bcryptjs.compareSync(this.body.password, this.user.password)){
+      this.errors.push('Senha inválida');
+      this.user = null; // garantir que ele esta negado
+      return;
+    }
+  }
+
   async register() {
     this.valida();
     if(this.errors.length > 0) return;
@@ -28,16 +42,11 @@ class Login {
       const salt = bcryptjs.genSaltSync();
       this.body.password = bcryptjs.hashSync(this.body.password, salt);
 
-      try{
       this.user = await LoginModel.create(this.body);
-
-    } catch(e) {
-      console.log(e);
-    }
   }
 
   async userExists(){
-    const user = await LoginModel.findOne({email: this.body.email}); // vai retorna um usuario se tiver o mesmo email
+    const user = await LoginModel.findOne({email: this.body.email});
     if(user) this.errors.push('Usuário já existe');
   }
 
