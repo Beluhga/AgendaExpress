@@ -3,7 +3,7 @@
 [![NPM](https://img.shields.io/npm/l/react)](hhttps://github.com/Beluhga/AppTest-paraEstudo/blob/main/LICENSE) 
 
 # Sobre o projeto
-Este projeto é uma aplicação de agenda desenvolvida usando Webpack, Bootstrap e JavaScript. Ele demonstra a integração de ferramentas modernas de desenvolvimento web para criar uma interface de usuário responsiva e interativa. Abaixo estão os principais componentes e funcionalidades do projeto:
+Este projeto é uma aplicação de agenda desenvolvida usando Webpack, Bootstrap, EJS e JavaScript. Ele demonstra a integração de ferramentas modernas de desenvolvimento web para criar uma interface de usuário responsiva e interativa, com renderização de templates dinâmica. Abaixo estão os principais componentes e funcionalidades do projeto:
 ## Layout front-end
 ![1 login](https://github.com/user-attachments/assets/cd5fdb2c-357a-43a7-8596-2709fde5c5a6)
 ![2 logado](https://github.com/user-attachments/assets/29042116-3dfb-4485-9554-409dffef085c)
@@ -16,6 +16,8 @@ Este projeto é uma aplicação de agenda desenvolvida usando Webpack, Bootstrap
 - Webpack: Utilizado para empacotar e otimizar o código JavaScript e os recursos estáticos do projeto. Webpack cuida da transpilação de módulos ES6, gerenciamento de dependências e bundling, proporcionando uma aplicação final eficiente e pronta para produção.
 
 - Bootstrap: Framework CSS que fornece um conjunto de estilos e componentes prontos para criar uma interface de usuário responsiva e visualmente atraente. O Bootstrap é utilizado para estilizar a agenda e garantir que a aplicação tenha uma aparência moderna e seja acessível em diferentes dispositivos.
+
+- EJS (Embedded JavaScript): Motor de template utilizado para renderizar dinamicamente o conteúdo HTML no servidor. O EJS permite a inclusão de lógica JavaScript diretamente no HTML, facilitando a criação de páginas dinâmicas e interativas.
 
 - JavaScript: A lógica de programação da agenda é implementada em JavaScript. O código gerencia as funcionalidades principais da agenda, como adicionar, editar e remover compromissos, bem como a manipulação dinâmica do DOM.
 
@@ -36,6 +38,8 @@ npm install
 
 # Build para Produção
 npm run build
+
+#Precisa criar um banco de dados no mongoDB em AWS
 
 ```
 
