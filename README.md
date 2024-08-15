@@ -44,6 +44,10 @@ npm install
 npm run build
 
 #Precisa criar um banco de dados no mongoDB em AWS
+criar um arquivo chamado  .env
+dentro do dele colocar  CONNECTIONSTRING=
+e a conexao
+
 
 ```
 
