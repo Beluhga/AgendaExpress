@@ -29,10 +29,10 @@ Este projeto é uma aplicação de agenda desenvolvida usando Webpack, Bootstrap
 
 ```bash
 # clonar repositório - clone repository
-git clone https://github.com/beluhga/AgendaExpress.git
+git clone https://github.com/Beluhga/AgendaExpress.git
 
 # entrar na pasta do projeto
-cd Gerador-CPF
+cd AgendaExpress
 
 # Execute o Projeto
 npm start
