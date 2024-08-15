@@ -32,17 +32,17 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => { 
     try {
         const login = new Login(req.body); 
-        await login.login(); //pedi para fazer o login
+        await login.login(); 
     
-        if(!login.user) { // se ocorrer algum error
+        if(!login.user) { 
             req.flash('errors', login.errors); 
-            req.session.save(function() { //se estiver certo, ele salva a sessao e retorna
+            req.session.save(function() { 
                 return res.redirect('/login/index'); 
             });
             return;
         }
-        req.flash('success', 'Conectado'); //se nao tiver errros ele passa normalmente
-        req.session.user = login.user;// recebendo o usuario
+        req.flash('success', 'Conectado'); 
+        req.session.user = login.user;
             req.session.save(function() {
                 return res.redirect('/login/index'); 
             });

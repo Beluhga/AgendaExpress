@@ -13,16 +13,10 @@ const ContatoSchema = new mongoose.Schema({
 const ContatoModel = mongoose.model('Contato', ContatoSchema);
 
 function Contato(body){
-  this.body = body; // vem para aqui
+  this.body = body;
   this.errors = [];
   this.contato = null; 
 }
-
-Contato.buscaPorId = async function(id) {
-  if(typeof id !== 'string') return;
-  const user = await ContatoModel.findById(id)
-  return user;
-};
 
 Contato.prototype.register = async function(){
   this.valida();
@@ -30,14 +24,14 @@ Contato.prototype.register = async function(){
   this.contato = await ContatoModel.create(this.body);
 };
 
-Contato.prototype.valida = function() { // depois valida os dados
+Contato.prototype.valida = function() {
   this.cleanUp();
   if(this.body.email && !validator.isEmail(this.body.email)) this.errors.push('E-mail inválido');
   if(!this.body.nome) this.errors.push('Nome é um campo obrigatório');
   if(!this.body.email && !this.body.telefone){ this.errors.push('Pelo menos um contato precisa ser enviado: e-mail ou telefone'); }
 }
 
-Contato.prototype.cleanUp = function() { // passar para aqui
+Contato.prototype.cleanUp = function() { 
   for(const key in this.body) {
     if(typeof this.body[key] !== 'string') {
       this.body[key] = '';
@@ -52,11 +46,31 @@ Contato.prototype.cleanUp = function() { // passar para aqui
   };
 };
 
-Contato.prototype.edit = async function(id){ // para checar o id
+Contato.prototype.edit = async function(id){ 
   if(typeof id !== 'string') return;
   this.valida();
   if(this.errors.length > 0) return;
-  this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, {new: true}); //encontre o contato pelo id e atualize os seus dados
+  this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, {new: true});
 };
+
+// Metodos estáticos
+Contato.buscaPorId = async function(id) {
+  if(typeof id !== 'string') return;
+  const user = await ContatoModel.findById(id)
+  return user;
+};
+
+Contato.buscarContatos = async function() {
+  const contatos = await ContatoModel.find()
+  .sort({criadoEm: -1})
+  return contatos;
+};
+
+Contato.delete = async function(id) {
+  if(typeof id !== 'string') return;
+  const contato = await ContatoModel.findOneAndDelete(id); // vai deleter com contato no id
+  return contato;
+};
+
 
 module.exports = Contato;
